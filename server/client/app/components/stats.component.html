@@ -1,0 +1,30 @@
+<div>
+
+    <table>
+        <tr>
+            <th>#</th>
+            <td *ngFor="#result of recentResults">{{result.gameNumber}}</td>
+        </tr>
+        <tr>
+            <th>Result</th>
+            <td *ngFor="#result of recentResults"
+                [ngClass]="{'win': result.result === 'W', 'lose': result.result === 'L'}">
+                {{result.result}}
+            </td>
+        </tr>
+        <tr>
+            <th>Rank</th>
+            <td *ngFor="#result of recentResults">{{result.rank}}</td>
+        </tr>
+    </table>
+
+    Wins: {{winCount}}
+    Losses: {{lossCount}}
+</div>
+<h2>Next game Number: {{nextGameNumber}}</h2>
+<h2>Current Rank: {{currentRank}}</h2>
+
+<button (click)="rankDown()">Demoted</button>
+<button (click)="lostGame()">Lost</button>
+<button (click)="wonGame()">Won</button>
+<button (click)="rankUp()">Promoted</button>
