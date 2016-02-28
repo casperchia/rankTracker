@@ -1,3 +1,10 @@
-<h3>Result Module for {{gameMode}}</h3>
-<graph [gameMode]="gameMode"></graph>
-<stats [gameMode]="gameMode"></stats>
+<h3>{{gameMode | uppercase}}</h3>
+<div class="row jumbotron">
+    <div class="col-sm-12 col-md-6">
+        <stats [gameMode]="gameMode"></stats>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <graph [gameMode]="gameMode"></graph>
+    </div>
+</div>
+

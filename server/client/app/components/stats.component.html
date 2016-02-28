@@ -2,28 +2,22 @@
 
     <h3>Overall: {{winPercentage}}%</h3>
     <h3>Recent: {{recentWinPercentage}}%</h3>
+    <h4>Games Played: {{winCount + lossCount}}</h4>
 
     <table>
         <tr>
-            <th>#</th>
-            <td *ngFor="#result of recentResults">{{result.gameNumber}}</td>
-        </tr>
-        <tr>
-            <th>Result</th>
-            <td *ngFor="#result of recentResults"
+            <td class="align-center" *ngFor="#result of recentResults"
                 [ngClass]="{'win': result.result === 'W', 'lose': result.result === 'L'}">
                 {{result.result}}
             </td>
         </tr>
         <tr>
-            <th>Tier</th>
-            <td *ngFor="#result of recentResults">
+            <td class="align-center" *ngFor="#result of recentResults">
                 <img src="../../rank_images/{{result.rank.tier}}S.jpg" height="25" width="25">
             </td>
         </tr>
         <tr>
-            <th>Division</th>
-            <td *ngFor="#result of recentResults">{{result.rank.division}}</td>
+            <td class="align-center" *ngFor="#result of recentResults">{{result.rank.division}}</td>
         </tr>
     </table>
 
