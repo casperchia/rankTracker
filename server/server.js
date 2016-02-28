@@ -8,9 +8,7 @@ var mongoose = require('mongoose');
 var PORT = 8080;
 var bodyParser = require('body-parser');
 var path = require('path');
-
-//var Result = require('./resultSchema');
-var autoIncrement = require('mongoose-auto-increment');
+var Result = require('./client/app/models/resultSchema.js');
 
 app.set('views', path.join(__dirname, '/client'));
 app.set('view engine', 'ejs');
@@ -20,28 +18,13 @@ app.use(express.static(path.join(__dirname, '/client')));
 //app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-mongoose.connect('mongodb://localhost/test3')
+mongoose.connect('mongodb://localhost/season2')
 var db = mongoose.connection;
-autoIncrement.initialize(db);
-
-var resultSchema = mongoose.Schema({
-    gameMode: {type: String, required: true},
-    result: {type: String, required: true},
-    rank: {type: Number, required: true},
-    gameNumber: {type: Number, required: true},
-    date: Date
-});
-
-resultSchema.plugin(autoIncrement.plugin, 'Result')
-var Result = mongoose.model('Result', resultSchema);
-
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
     console.log("Connected to MongoDB...");
 })
-
-
 
 app.get('/results/:gameMode', function(req, res){
     var gameMode = req.params.gameMode;
@@ -104,7 +87,6 @@ app.get('/recent/:gameMode', function(req, res){
                         res.json([]);
                         return console.error(err);
                     }else{
-                        console.log("TEST: " + results);
                         res.json(results);;
                     }
                 }
@@ -133,6 +115,24 @@ app.get('/last_game_data/:gameMode', function(req, res){
                }
            }
         });
+})
+
+// Delete most recent result
+app.delete('/results/:gameMode', function(req, res){
+    var gameMode = req.params.gameMode;
+
+    Result.findOneAndRemove({gameMode: gameMode}, {sort: {gameNumber: -1}})
+        .exec(function(error, doc){
+        if(error){
+            console.log(error);
+            res.send(error);
+        }else{
+            console.log(doc);
+            res.send(doc);
+        }
+    });
+
+
 })
 
 app.get('*', function(req, res){

@@ -1,6 +1,7 @@
 import {Injectable} from "angular2/core";
 import {Http} from "angular2/http";
 import {Headers} from "angular2/http";
+import {ResultsData} from "../components/ResultsData";
 
 @Injectable()
 export class ResultDataService{
@@ -25,12 +26,17 @@ export class ResultDataService{
             .map(res => res.json());
     }
 
-    postResults(gameMode: string, resultData){
+    postResults(gameMode: string, resultData: ResultsData){
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
         var url = 'results/' + gameMode;
         return this.http.post(url, JSON.stringify(resultData), {
             headers: headers
         });
+    }
+
+    deleteLastResult(gameMode: string){
+        var url = 'results/' + gameMode;
+        return this.http.delete(url);
     }
 }

@@ -1,5 +1,8 @@
 <div>
 
+    <h3>Overall: {{winPercentage}}%</h3>
+    <h3>Recent: {{recentWinPercentage}}%</h3>
+
     <table>
         <tr>
             <th>#</th>
@@ -13,18 +16,29 @@
             </td>
         </tr>
         <tr>
-            <th>Rank</th>
-            <td *ngFor="#result of recentResults">{{result.rank}}</td>
+            <th>Tier</th>
+            <td *ngFor="#result of recentResults">
+                <img src="../../rank_images/{{result.rank.tier}}S.jpg" height="25" width="25">
+            </td>
+        </tr>
+        <tr>
+            <th>Division</th>
+            <td *ngFor="#result of recentResults">{{result.rank.division}}</td>
         </tr>
     </table>
 
     Wins: {{winCount}}
     Losses: {{lossCount}}
 </div>
-<h2>Next game Number: {{nextGameNumber}}</h2>
-<h2>Current Rank: {{currentRank}}</h2>
+
+<h3>
+    <img src="../../rank_images/{{currentRank.tier}}S.jpg">
+    Tier {{currentRank.tier}} Division {{currentRank.division}}
+</h3>
+
 
 <button (click)="rankDown()">Demoted</button>
 <button (click)="lostGame()">Lost</button>
 <button (click)="wonGame()">Won</button>
 <button (click)="rankUp()">Promoted</button>
+<button (click)="undo()">Undo</button>

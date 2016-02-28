@@ -1,6 +1,10 @@
-export interface ResultsData{
+import {Rank} from "./Rank";
+
+export class ResultsData{
     gameMode: string;
     result: string;
-    rank: number;
+    rank: Rank;
+    gameNumber: number;
     date: Date;
+
 }
