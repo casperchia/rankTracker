@@ -33,8 +33,7 @@ app.get('/results/all', function(req, res){
             res.json([]);
             return console.error(err);
         }else{
-            console.log("display");
-            console.log(results);
+            console.log("app.get('/results/all') successful.")
             res.json(results);;
         }
     })
@@ -48,14 +47,13 @@ app.get('/results/:gameMode', function(req, res){
             res.json([]);
             return console.error(err);
         }else{
+            console.log("app.get('/results/:gameMode') successful.")
             res.json(results);;
         }
     })
 })
 
 app.post('/results/:gameMode', function(req, res){
-    console.log("print request: " + req);
-    console.log(req.body);
     var gameMode = req.params.gameMode;
     var result = req.body.result;
     var rank = req.body.rank;
@@ -67,6 +65,7 @@ app.post('/results/:gameMode', function(req, res){
             res.send(err);
             return console.error(err);
         }else{
+            console.log("app.post('/results/:gameMode') save successful.")
             console.log("Saved: " + result);
             res.json(result);
         }
@@ -102,6 +101,7 @@ app.get('/recent/:gameMode', function(req, res){
                         res.json([]);
                         return console.error(err);
                     }else{
+                        console.log("app.get('/recent/:gameMode') successful.")
                         res.json(results);;
                     }
                 }
@@ -122,7 +122,7 @@ app.get('/last_game_data/:gameMode', function(req, res){
                res.json([]);
                return console.error(err);
            }else{
-               console.log(results);
+               console.log("app.get('/last_game_data/:gameMode') successful.");
                if(results.length < 1){
                    res.json({});
                }else{
@@ -142,7 +142,7 @@ app.delete('/results/:gameMode', function(req, res){
             console.log(error);
             res.send(error);
         }else{
-            console.log(doc);
+            console.log("app.delete('/results/:gameMode) successful.");
             res.send(doc);
         }
     });
