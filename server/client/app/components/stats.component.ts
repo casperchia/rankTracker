@@ -2,6 +2,8 @@ import {Component} from "angular2/core";
 import {ResultsData} from "./ResultsData";
 import {ResultDataService} from "../services/result-data.service";
 import {Rank} from "./Rank";
+import {Output} from "angular2/core";
+import {EventEmitter} from "angular2/core";
 
 @Component({
     selector: 'stats',
@@ -23,6 +25,7 @@ export class StatsComponent{
     currentRank: Rank = new Rank(0,0);
     winPercentage: string;
     recentWinPercentage: string;
+    @Output() updateData = new EventEmitter();
 
     constructor(private _resultDataService: ResultDataService){}
 
@@ -34,7 +37,7 @@ export class StatsComponent{
         this.getResultsData();
         this.getRecentResults();
         this.getRankAndGameNumber();
-
+        this.updateData.emit("updateEvent");
     }
 
     getResultsData(){

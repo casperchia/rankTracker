@@ -8,6 +8,12 @@ export class ResultDataService{
 
     constructor(private http: Http){}
 
+    getAllResults(){
+        var url = 'results/all';
+        return this.http.get(url)
+            .map(res => res.json());
+    }
+
     getResults(gameMode: string){
         var url = 'results/' + gameMode;
         return this.http.get(url)

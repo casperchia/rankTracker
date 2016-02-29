@@ -19,12 +19,27 @@ app.use(express.static(path.join(__dirname, '/client')));
 app.use(bodyParser.json());
 
 mongoose.connect('mongodb://localhost/season2')
+//mongoose.connect('mongodb://localhost/test0')
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
     console.log("Connected to MongoDB...");
 })
+
+app.get('/results/all', function(req, res){
+    Result.find({}, function(err, results){
+        if(err){
+            res.json([]);
+            return console.error(err);
+        }else{
+            console.log("display");
+            console.log(results);
+            res.json(results);;
+        }
+    })
+})
+
 
 app.get('/results/:gameMode', function(req, res){
     var gameMode = req.params.gameMode;
