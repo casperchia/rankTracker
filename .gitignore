@@ -35,8 +35,12 @@ jspm_packages
 
 # Angular2 stuff
 typings
-server/client/app/**/*.js
-server/client/app/**/*.map
+server/client/app/*.js
+server/client/app/*.map
+server/client/app/components/*.js
+server/client/app/components/*.map
+server/client/app/services/*.js
+server/client/app/services/*.map
 node_modules
 jspm_packages
 bower_components
