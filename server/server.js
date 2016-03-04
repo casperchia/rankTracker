@@ -75,7 +75,7 @@ app.post('/results/:gameMode', function(req, res){
 
 app.get('/recent/:gameMode', function(req, res){
     var gameMode = req.params.gameMode;
-    var RESULTS_TO_SHOW = 20;
+    var RESULTS_TO_SHOW = 10;
 
     //Result.find({gameMode: gameMode})
     //    .sort({date: -1})
