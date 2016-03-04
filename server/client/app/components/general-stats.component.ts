@@ -37,6 +37,11 @@ export class GeneralStatsComponent implements OnChanges, OnInit{
     }
 
     refreshData(){
+        this.getAllResults();
+        this.getGamesPlayedToday();
+    }
+
+    getAllResults(){
         this._resultDataService.getAllResults()
             .subscribe(
                 data => {
@@ -58,6 +63,14 @@ export class GeneralStatsComponent implements OnChanges, OnInit{
                 err => console.log("getAllResultsData() error: " + err),
                 () => console.log('Retrieved Data for All Results')
             );
+    }
+
+    getGamesPlayedToday(){
+        this._resultDataService.getGamesPlayedToday('all')
+            .subscribe(
+                count => this.gamesPlayedToday = count,
+                err => console.log("GeneralStatsComponent getGamesPlayedToday() error: " + err)
+            )
     }
 
     numberToDecimal(num: number){

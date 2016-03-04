@@ -25,6 +25,7 @@ export class StatsComponent{
     currentRank: Rank = new Rank(0,0);
     winPercentage: string;
     recentWinPercentage: string;
+    gamesPlayedToday: number;
     @Output() updateData = new EventEmitter();
 
     constructor(private _resultDataService: ResultDataService){}
@@ -37,6 +38,7 @@ export class StatsComponent{
         this.getResultsData();
         this.getRecentResults();
         this.getRankAndGameNumber();
+        this.getGamesPlayedToday();
         this.updateData.emit("updateEvent");
     }
 
@@ -167,4 +169,13 @@ export class StatsComponent{
                 err => console.log("deleteLastResult() error: " + err)
             )
     }
+
+    getGamesPlayedToday(){
+        this._resultDataService.getGamesPlayedToday(this.gameMode)
+            .subscribe(
+                count => this.gamesPlayedToday = count,
+                err => console.log("GeneralStatsComponent getGamesPlayedToday() error: " + err)
+            )
+    }
+
 }

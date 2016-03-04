@@ -45,4 +45,10 @@ export class ResultDataService{
         var url = 'results/' + gameMode;
         return this.http.delete(url);
     }
+
+    getGamesPlayedToday(gameMode: string){
+        var url = 'games_played_today/' + gameMode;
+        return this.http.get(url)
+            .map(res => res.json().count);
+    }
 }

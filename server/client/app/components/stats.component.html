@@ -1,9 +1,9 @@
 <div>
 
-    <h3>Overall: {{winPercentage}}%</h3>
-    <h3>Recent: {{recentWinPercentage}}%</h3>
-    <h4>Games Played: {{winCount + lossCount}}</h4>
-
+    <h4>Overall: {{winPercentage}}%</h4>
+    <h4>Recent: {{recentWinPercentage}}%</h4>
+    <h4>Total Games Played: {{winCount + lossCount}}</h4>
+    <h4>Games played Today: {{gamesPlayedToday}}</h4>
     <table>
         <tr>
             <td class="align-center" *ngFor="#result of recentResults"

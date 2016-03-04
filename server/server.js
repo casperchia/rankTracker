@@ -150,6 +150,37 @@ app.delete('/results/:gameMode', function(req, res){
 
 })
 
+app.get('/games_played_today/:gameMode', function(req, res){
+    var gameMode = req.params.gameMode;
+
+    var start = new Date();
+    start.setHours(0, 0, 0, 0);
+
+    var end = new Date();
+    end.setHours(0, 0, 0, 0);
+    end.setDate(start.getDate() + 1);
+
+    var query;
+    if(gameMode == 'all'){
+        query = {date: {$gte: start, $lt: end}};
+    }else{
+        query = {date: {$gte: start, $lt: end}, gameMode: gameMode};
+    }
+
+    Result.find(query)
+        .count()
+        .exec(function(err, results){
+            if(err){
+                console.log(err);
+                res.json({});
+            }else{
+                console.log("app.get('/games_played_today/:gameMode') successful.");
+                res.json({count: results})
+            }
+        });
+
+});
+
 app.get('*', function(req, res){
     res.sendFile(path.join(__dirname + '/client/index.html'));
     //res.render('index.html');
