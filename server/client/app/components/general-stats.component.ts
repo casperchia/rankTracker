@@ -45,7 +45,6 @@ export class GeneralStatsComponent implements OnChanges, OnInit{
         this._resultDataService.getAllResults()
             .subscribe(
                 data => {
-                    console.log(data);
                     this.resultsData = data;
                     this.winCount = 0;
                     this.lossCount = 0;
@@ -60,8 +59,7 @@ export class GeneralStatsComponent implements OnChanges, OnInit{
                     var winPercent = this.winCount / (this.winCount + this.lossCount) * 100;
                     this.winPercentage = this.numberToDecimal(winPercent);
                 },
-                err => console.log("getAllResultsData() error: " + err),
-                () => console.log('Retrieved Data for All Results')
+                err => console.error("getAllResultsData() error: " + err)
             );
     }
 
@@ -69,7 +67,7 @@ export class GeneralStatsComponent implements OnChanges, OnInit{
         this._resultDataService.getGamesPlayedToday('all')
             .subscribe(
                 count => this.gamesPlayedToday = count,
-                err => console.log("GeneralStatsComponent getGamesPlayedToday() error: " + err)
+                err => console.error("GeneralStatsComponent getGamesPlayedToday() error: " + err)
             )
     }
 

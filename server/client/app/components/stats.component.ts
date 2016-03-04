@@ -60,8 +60,7 @@ export class StatsComponent{
                     var winPercent = this.winCount / (this.winCount + this.lossCount) * 100;
                     this.winPercentage = this.numberToDecimal(winPercent);
                 },
-                err => console.log("getResultsData() error: " + err),
-                () => console.log('Retrieved Data')
+                err => console.error("getResultsData() error: " + err)
             );
     }
 
@@ -83,8 +82,7 @@ export class StatsComponent{
                     var winPercent = winCount / (winCount + lossCount) * 100;
                     this.recentWinPercentage = this.numberToDecimal(winPercent);
                 },
-                err => console.log("getRecentResults() error: " + err),
-                () => console.log('Retrieved recent results')
+                err => console.log("getRecentResults() error: " + err)
             );
     }
 
@@ -96,7 +94,7 @@ export class StatsComponent{
             gameNumber: this.nextGameNumber
         };
         this.postData(resultData);
-        console.log("won " + this.gameMode);
+        //console.log("won " + this.gameMode);
     }
 
     lostGame(){
@@ -107,7 +105,7 @@ export class StatsComponent{
             gameNumber: this.nextGameNumber
         };
         this.postData(resultData);
-        console.log("lost " + this.gameMode);
+        //console.log("lost " + this.gameMode);
     }
 
     rankUp(){
@@ -148,9 +146,8 @@ export class StatsComponent{
                             this.currentRank = new Rank(data.rank.tier, data.rank.division);
                         }
                     }
-                    console.log(JSON.stringify(data));
                 },
-                err => console.log("getRankAndGameNumber() error: " + err)
+                err => console.error("getRankAndGameNumber() error: " + err)
             )
     }
 
@@ -163,10 +160,9 @@ export class StatsComponent{
         this._resultDataService.deleteLastResult(this.gameMode)
             .subscribe(
                 data => {
-                    console.log(data);
                     this.refreshData();
                 },
-                err => console.log("deleteLastResult() error: " + err)
+                err => console.error("deleteLastResult() error: " + err)
             )
     }
 
@@ -174,7 +170,7 @@ export class StatsComponent{
         this._resultDataService.getGamesPlayedToday(this.gameMode)
             .subscribe(
                 count => this.gamesPlayedToday = count,
-                err => console.log("GeneralStatsComponent getGamesPlayedToday() error: " + err)
+                err => console.error("GeneralStatsComponent getGamesPlayedToday() error: " + err)
             )
     }
 
