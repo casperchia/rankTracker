@@ -1,4 +1,16 @@
 <div>
+    <div class="rank">
+        <img src="../../rank_images/{{currentRank.tier}}S.jpg">
+        Tier {{currentRank.tier}} Division {{currentRank.division}}
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-default" (click)="rankDown()">Demoted</button>
+        <button class="btn btn-default lost-button" (click)="lostGame()">Lost</button>
+        <button class="btn btn-default won-button" (click)="wonGame()">Won</button>
+        <button class="btn btn-default" (click)="rankUp()">Promoted</button>
+        <button class="btn btn-default" (click)="undo()">Undo</button>
+    </div>
 
     <h4>Overall: {{winPercentage}}%</h4>
     <h4>Recent: {{recentWinPercentage}}%</h4>
@@ -25,14 +37,3 @@
     Losses: {{lossCount}}
 </div>
 
-<h3>
-    <img src="../../rank_images/{{currentRank.tier}}S.jpg">
-    Tier {{currentRank.tier}} Division {{currentRank.division}}
-</h3>
-
-
-<button class="btn btn-default" (click)="rankDown()">Demoted</button>
-<button class="btn btn-default" (click)="lostGame()">Lost</button>
-<button class="btn btn-default" (click)="wonGame()">Won</button>
-<button class="btn btn-default" (click)="rankUp()">Promoted</button>
-<button class="btn btn-default" (click)="undo()">Undo</button>

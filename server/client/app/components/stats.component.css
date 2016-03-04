@@ -1,4 +1,4 @@
-.win {
+.win  {
     background-color: #7be500;
 }
 
@@ -8,4 +8,9 @@
 
 .align-center {
     text-align: center;
+}
+
+.rank{
+    margin-bottom: 15px;
+    font-size: 26px;
 }
