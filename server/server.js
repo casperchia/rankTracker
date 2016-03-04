@@ -13,7 +13,6 @@ var Result = require('./client/app/models/resultSchema.js');
 app.set('views', path.join(__dirname, '/client'));
 app.set('view engine', 'ejs');
 
-app.use(express.static('../node_modules'));
 app.use(express.static(path.join(__dirname, '/client')));
 //app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
