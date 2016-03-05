@@ -29,6 +29,7 @@ export class StatsComponent{
     winPercentage: string;
     recentWinPercentage: string;
     gamesPlayedToday: number;
+    rankChange: number = 0;
     @Output() updateData = new EventEmitter();
 
     constructor(private _resultDataService: ResultDataService){}
@@ -97,6 +98,7 @@ export class StatsComponent{
             gameNumber: this.nextGameNumber
         };
         this.postData(resultData);
+        this.rankChange = 0;
         //console.log("won " + this.gameMode);
     }
 
@@ -108,16 +110,19 @@ export class StatsComponent{
             gameNumber: this.nextGameNumber
         };
         this.postData(resultData);
+        this.rankChange = 0;
         //console.log("lost " + this.gameMode);
     }
 
     rankUp(){
+        this.rankChange++;
         this.currentRank.rankUp();
         // Need to create new rank otherwise the rank-display pipe will not trigger
         this.currentRank = new Rank(this.currentRank.tier, this.currentRank.division);
     }
 
     rankDown(){
+        this.rankChange--;
         this.currentRank.rankDown();
         this.currentRank = new Rank(this.currentRank.tier, this.currentRank.division);
     }
@@ -163,6 +168,7 @@ export class StatsComponent{
 
     undo(){
         console.log("undo()");
+        this.rankChange = 0;
         this._resultDataService.deleteLastResult(this.gameMode)
             .subscribe(
                 data => {

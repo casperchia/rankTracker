@@ -8,7 +8,11 @@
         </div>
         <div class="rank-box">
             <div class="tier">{{currentRank | tierDisplay}}</div>
-            <div class="division">Division {{currentRank | divisionDisplay}}</div>
+            <div class="division">
+                Division {{currentRank | divisionDisplay}}
+                <span [hidden]="rankChange <= 0"><span class="glyphicon glyphicon-arrow-up rankUp"></span></span>
+                <span [hidden]="rankChange >= 0"><span class="glyphicon glyphicon-arrow-down rankDown" ></span></span>
+            </div>
         </div>
     </div>
 

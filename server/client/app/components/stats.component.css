@@ -57,3 +57,11 @@
 table{
     border: 1px solid #CCCCCC;
 }
+
+.rankUp{
+    color: #00AA00;
+}
+
+.rankDown{
+    color: #e04251;
+}
