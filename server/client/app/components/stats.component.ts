@@ -22,7 +22,7 @@ export class StatsComponent{
     lossCount: number;
     postResponse;
     nextGameNumber: number;
-    currentRank: Rank = new Rank(0,0);
+    currentRank: Rank = new Rank(0, 1);
     winPercentage: string;
     recentWinPercentage: string;
     gamesPlayedToday: number;
@@ -133,7 +133,7 @@ export class StatsComponent{
                 data => {
                     if(!data){
                         this.nextGameNumber = 1;
-                        this.currentRank = new Rank(0, 0);
+                        this.currentRank = new Rank(0, 1);
                     }else{
                         if(!data.gameNumber){
                             this.nextGameNumber = 1;
@@ -141,7 +141,7 @@ export class StatsComponent{
                             this.nextGameNumber = data.gameNumber + 1;
                         }
                         if(!data.rank || (!data.rank.tier && !data.rank.division)){
-                            this.currentRank = new Rank(0, 0);
+                            this.currentRank = new Rank(0, 1);
                         }else{
                             this.currentRank = new Rank(data.rank.tier, data.rank.division);
                         }
