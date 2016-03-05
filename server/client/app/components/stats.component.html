@@ -28,7 +28,7 @@
             </td>
         </tr>
         <tr>
-            <td class="align-center" *ngFor="#result of recentResults">{{result.rank.division}}</td>
+            <td class="align-center" *ngFor="#result of recentResults">{{result.rank.division | divisionDisplay}}</td>
         </tr>
     </table>
     <button class="btn btn-default" (click)="undo()">

@@ -5,6 +5,7 @@ import {Rank} from "./Rank";
 import {Output} from "angular2/core";
 import {EventEmitter} from "angular2/core";
 import {RankDisplayPipe} from "../pipes/rank-display.pipe";
+import {DivisionDisplayPipe} from "../pipes/division-display.pipe";
 
 @Component({
     selector: 'stats',
@@ -13,7 +14,7 @@ import {RankDisplayPipe} from "../pipes/rank-display.pipe";
     directives: [],
     providers: [],
     inputs: ['gameMode'],
-    pipes: [RankDisplayPipe]
+    pipes: [RankDisplayPipe, DivisionDisplayPipe]
 })
 
 export class StatsComponent{
