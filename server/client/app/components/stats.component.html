@@ -12,12 +12,7 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <button class="btn btn-default lost-button" (click)="lostGame()">Lost</button>
-        <button class="btn btn-default won-button" (click)="wonGame()">Won</button>
-    </div>
-
-    <table>
+    <table class="results-table">
         <tr>
             <td class="align-center" *ngFor="#result of recentResults"
                 [ngClass]="{'win': result.result === 'W', 'lose': result.result === 'L'}">
@@ -33,10 +28,15 @@
             <td class="align-center" *ngFor="#result of recentResults">{{result.rank | divisionDisplay}}</td>
         </tr>
     </table>
-    <button class="btn btn-default" (click)="undo()">
-        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-        Remove Last
-    </button>
+
+    <div class="form-group">
+        <button class="btn btn-default lost-button" (click)="lostGame()">Lost</button>
+        <button class="btn btn-default won-button" (click)="wonGame()">Won</button>
+        <button class="btn btn-default" (click)="undo()">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            Undo
+        </button>
+    </div>
 
     <h4>Overall: {{winPercentage}}%</h4>
     <h4>Recent: {{recentWinPercentage}}%</h4>

@@ -49,3 +49,11 @@
 .division{
     font-size: 16px;
 }
+
+.results-table{
+    margin-bottom: 15px;
+}
+
+table{
+    border: 1px solid #CCCCCC;
+}
