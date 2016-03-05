@@ -4,6 +4,7 @@ import {ResultDataService} from "../services/result-data.service";
 import {Rank} from "./Rank";
 import {Output} from "angular2/core";
 import {EventEmitter} from "angular2/core";
+import {RankDisplayPipe} from "../pipes/rank-display.pipe";
 
 @Component({
     selector: 'stats',
@@ -11,7 +12,8 @@ import {EventEmitter} from "angular2/core";
     styleUrls: ['app/components/stats.component.css'],
     directives: [],
     providers: [],
-    inputs: ['gameMode']
+    inputs: ['gameMode'],
+    pipes: [RankDisplayPipe]
 })
 
 export class StatsComponent{
@@ -110,10 +112,13 @@ export class StatsComponent{
 
     rankUp(){
         this.currentRank.rankUp();
+        // Need to create new rank otherwise the rank-display pipe will not trigger
+        this.currentRank = new Rank(this.currentRank.tier, this.currentRank.division);
     }
 
     rankDown(){
         this.currentRank.rankDown();
+        this.currentRank = new Rank(this.currentRank.tier, this.currentRank.division);
     }
 
     postData(resultData){
