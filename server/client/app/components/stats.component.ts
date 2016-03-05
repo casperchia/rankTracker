@@ -122,7 +122,7 @@ export class StatsComponent{
     }
 
     rankDown(){
-        this.rankChange--;
+        if(this.currentRank.tier > 0) this.rankChange--;
         this.currentRank.rankDown();
         this.currentRank = new Rank(this.currentRank.tier, this.currentRank.division);
     }
