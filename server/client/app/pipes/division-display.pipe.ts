@@ -11,12 +11,14 @@ import {Rank} from "../components/Rank";
 
 export class DivisionDisplayPipe implements PipeTransform {
 
-    DIVISIONS = ['I', 'II', 'III','IV', 'V'];
+    DIVISIONS = ['-', 'I', 'II', 'III','IV', 'V'];
 
-    transform(value: number) {
-        var division = '-';
-        if(value && value > 0 && value <= this.DIVISIONS.length){
-            division = this.DIVISIONS[value - 1]
+    transform(rank: Rank) {
+        var division;
+        if(rank.tier == 0){
+            division = this.DIVISIONS[0];
+        }else{
+            division = this.DIVISIONS[rank.division]
         }
         return division;
     }
