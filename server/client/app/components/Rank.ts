@@ -16,8 +16,8 @@ export class Rank{
     }
 
     rankDown(){
-        // Cannot go below Tier 0 Division 1
-        if(!(this.tier == 0 && this.division == 1)){
+        // Cannot go below Tier 0
+        if(!(this.tier == 0)){
             this.division--;
             if(this.division < 1){
                 this.division = this.division + 5;
