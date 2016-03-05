@@ -8,10 +8,15 @@ export class Rank{
     };
 
     rankUp(){
-        this.division++;
-        if(this.division > 5){
-            this.division = this.division - 5;
-            this.tier++;
+        if(this.tier == 0){
+            this.tier = 1;
+            this.division = 1;
+        }else{
+            this.division++;
+            if(this.division > 5){
+                this.division = this.division - 5;
+                this.tier++;
+            }
         }
     }
 
