@@ -76,23 +76,11 @@ app.get('/recent/:gameMode', function(req, res){
     var gameMode = req.params.gameMode;
     var RESULTS_TO_SHOW = 10;
 
-    //Result.find({gameMode: gameMode})
-    //    .sort({date: -1})
-    //    .limit(20)
-    //    .exec(function(err, results){
-    //        if(err){
-    //            res.json([]);
-    //            return console.error(err);
-    //        }else{
-    //            res.json(results);;
-    //        }
-    //    });
-
     Result.count({gameMode: gameMode}, function(err, count){
         if(err){
             console.log("Result.count() error: " + err);
         }else{
-            if(count < 20) RESULTS_TO_SHOW = count;
+            if(count < RESULTS_TO_SHOW) RESULTS_TO_SHOW = count;
             Result.find({gameMode: gameMode})
                 .skip(count - RESULTS_TO_SHOW)
                 .exec(function(err, results){
