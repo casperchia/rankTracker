@@ -8,7 +8,7 @@ var mongoose = require('mongoose');
 var PORT = 8080;
 var bodyParser = require('body-parser');
 var path = require('path');
-var Result = require('./client/app/models/resultSchema.js');
+var Result = require('./resultSchema.js');
 
 app.set('views', path.join(__dirname, '/client'));
 app.set('view engine', 'ejs');
