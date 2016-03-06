@@ -74,7 +74,7 @@ app.post('/results/:gameMode', function(req, res){
 
 app.get('/recent/:gameMode', function(req, res){
     var gameMode = req.params.gameMode;
-    var RESULTS_TO_SHOW = 10;
+    var RESULTS_TO_SHOW = 12;
 
     Result.count({gameMode: gameMode}, function(err, count){
         if(err){
